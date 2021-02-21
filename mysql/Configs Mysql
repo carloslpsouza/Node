@@ -1,0 +1,3 @@
+#configs mysql server
+
+docker run --name srv-mysql -e MYSQL_ROOT_PASSWORD=TstSql123 -d mysql
