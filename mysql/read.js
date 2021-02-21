@@ -18,7 +18,10 @@ connection.connect(function(err){
 	if (err) console.error('Erro con BD' + err.stack); return;
 });
 
-
+connection.query("SELECT * FROM USER", function(err, result, fields){
+	if (err) throw err;
+	console.log(result);
+});
 
 connection.end();
 

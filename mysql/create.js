@@ -1,8 +1,3 @@
-const express = require("express");
-
-const app = express();
-
-//Conexão com banco
 const mysql = require("mysql");
 
 const connection = mysql.createConnection({
@@ -18,17 +13,12 @@ connection.connect(function(err){
 	if (err) console.error('Erro con BD' + err.stack); return;
 });
 
-
+connection.query("INSERT INTO USER (NOME, EMAIL) VALUES ('emilia', 'emilia@gmail.com')", function(err, result){
+	if (!err){
+		console.log("Cadastrado com sucesso!");
+	}else{
+		console.log("Erro ao cadastrar no banco!");
+	}
+});
 
 connection.end();
-
-app.get("/", function(req, res){
-	res.end("Raiz");
-});
-
-app.get("/contato", function(req, res){
-	res.end("Contato");
-});
-
-console.log("Server run!")
-app.listen(8080);

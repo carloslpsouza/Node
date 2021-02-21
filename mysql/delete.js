@@ -1,8 +1,3 @@
-const express = require("express");
-
-const app = express();
-
-//Conexão com banco
 const mysql = require("mysql");
 
 const connection = mysql.createConnection({
@@ -18,17 +13,12 @@ connection.connect(function(err){
 	if (err) console.error('Erro con BD' + err.stack); return;
 });
 
-
+connection.query("DELETE FROM USER WHERE ID='3'", function(err, result){
+	if (!err){
+		console.log("Deletado com sucesso!");
+	}else{
+		console.log("Erro ao deletar usuario!");
+	}
+});
 
 connection.end();
-
-app.get("/", function(req, res){
-	res.end("Raiz");
-});
-
-app.get("/contato", function(req, res){
-	res.end("Contato");
-});
-
-console.log("Server run!")
-app.listen(8080);
